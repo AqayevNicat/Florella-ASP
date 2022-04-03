@@ -1,0 +1,7 @@
+﻿@model HomeVM
+
+<li><a href="~/" data-id="all">All</a></li>
+@foreach (Category category in Model.Category) { 
+
+<li><a href="~/" data-id="@category.Name.ToLower()">@category.Name</a></li>
+}

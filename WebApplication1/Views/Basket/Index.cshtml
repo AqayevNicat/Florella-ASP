@@ -1,0 +1,101 @@
+﻿@model List<BasketVM>
+<main>
+    <section id="product-list-title">
+        <div class="container py-4">
+            <div class="row py-5">
+                <div class="col-12">
+                    <h1>Product List</h1>
+                    <i class="text-muted">Where flowers are our inspiration</i>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="cart">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-8 head-text">
+                    <h4>Your Cart</h4>
+                    <p>
+                        <span>There are <span class="countt">0</span> products in your cart</span>
+                        <a href="" class="clear-basket"><i class="fa-solid fa-trash-can"></i>Clear Cart</a>
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-8 col-lg-12 cart-left">
+                    <table class="cart-table">
+                        <thead class="cart-head">
+                            <tr>
+                                <th class="custome-checkbox">
+                                    <input type="checkbox" name="" id="" value="">
+                                </th>
+                                <th scope="col" style="text-align: left;" colspan="2">Product</th>
+                                <th scope="col">Unit Price</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col">Subtotal</th>
+                                <th scope="col" class="end">Remove</th>
+                            </tr>
+                        </thead>
+
+                        <tbody class="cart-body">
+
+                            @await Html.PartialAsync("_BasketTablePartial", Model)
+
+                        </tbody>
+
+                    </table>
+                    <hr style="margin-top: 50px;">
+                    <div class="update-btn">
+                        <a href="shop.html" class="shop"><i class="fa-solid fa-left-long"></i>Continue shopping</a>
+                        <button class="update"><i class="fa-solid fa-arrows-rotate"></i>Update cart</button>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-12 cart-right">
+                    <div class="table-responsive">
+                        <table class="table no-border">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <h6>Subtotal</h6>
+                                    </td>
+                                    <td class="text-right">
+                                        <h4>$12.31</h4>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td scope="col" colspan="2">
+                                        <hr>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h6>Shipping</h6>
+                                    </td>
+                                    <td class="text-right">
+                                        <h5>Free </h5>
+                                    <td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h6>Total</h6>
+                                    </td>
+                                    <td class="text-right">
+                                        @{
+                                            double total = 0;
+                                            foreach (BasketVM basketVM in Model)
+                                            {
+                                                total += basketVM.Count * basketVM.Price;
+                                            }
+                                        }
+                                        <h4>$ <span class="total-price-s">@total</span></h4>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <a href="#">Proceed To CheckOut<i class="fa-solid fa-door-open"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
